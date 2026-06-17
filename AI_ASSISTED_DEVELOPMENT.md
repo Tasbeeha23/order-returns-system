@@ -1,4 +1,4 @@
-# AI Usage Report
+# AI Assisted Development
 
 ## Overview
 
