@@ -1,0 +1,409 @@
+/* ===== Design tokens =====
+   Palette grounded in retail operations / warehouse tooling:
+   deep slate for structure, warehouse-orange as the single accent
+   (the color of a "returns" sticker / hazard tape in a backroom),
+   muted status colors that read at a glance on a dashboard. */
+:root {
+  --color-bg: #f6f5f2;
+  --color-surface: #ffffff;
+  --color-ink: #1f2430;
+  --color-ink-muted: #5b6270;
+  --color-border: #e3e1db;
+  --color-accent: #d96c2c;
+  --color-accent-dark: #b8551e;
+
+  --color-approved-bg: #e7f3ea;
+  --color-approved-text: #1f7a3d;
+  --color-pending-bg: #fdf1e2;
+  --color-pending-text: #b8731a;
+  --color-rejected-bg: #fbe9e7;
+  --color-rejected-text: #c0392b;
+  --color-submitted-bg: #eaeef5;
+  --color-submitted-text: #3b4a66;
+
+  --font-display: 'Iowan Old Style', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+
+  --radius: 6px;
+  --shadow-card: 0 1px 2px rgba(31, 36, 48, 0.04), 0 4px 16px rgba(31, 36, 48, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout shell ===== */
+
+.app-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+.app-header {
+  padding: 48px 0 32px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 32px;
+}
+
+.app-header h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+  color: var(--color-ink);
+}
+
+.app-header p {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 0.98rem;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ===== Card ===== */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 28px 28px 32px;
+}
+
+.card h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+/* ===== Form ===== */
+
+.return-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--color-ink);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(217, 108, 44, 0.14);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.btn-primary {
+  justify-self: start;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 11px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-dark);
+}
+
+.btn-primary:disabled {
+  background: #cbb5a3;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+/* ===== Result banner ===== */
+
+.result-banner {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--color-ink-muted);
+}
+
+.result-banner strong {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.result-banner p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}
+
+.result-approved {
+  background: var(--color-approved-bg);
+  border-left-color: var(--color-approved-text);
+}
+.result-pending_review {
+  background: var(--color-pending-bg);
+  border-left-color: var(--color-pending-text);
+}
+.result-rejected {
+  background: var(--color-rejected-bg);
+  border-left-color: var(--color-rejected-text);
+}
+
+.inline-error {
+  margin-top: 14px;
+  color: var(--color-rejected-text);
+  font-size: 0.9rem;
+}
+
+/* ===== Dashboard ===== */
+
+.dashboard-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+}
+
+.status-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-chip {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-ink-muted);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+.filter-chip.active {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
+}
+
+/* ===== Table ===== */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead th {
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-muted);
+  padding: 0 12px 10px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reason-cell {
+  color: var(--color-ink-muted);
+  max-width: 280px;
+}
+
+/* ===== Status badge ===== */
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-approved {
+  background: var(--color-approved-bg);
+  color: var(--color-approved-text);
+}
+.badge-pending {
+  background: var(--color-pending-bg);
+  color: var(--color-pending-text);
+}
+.badge-rejected {
+  background: var(--color-rejected-bg);
+  color: var(--color-rejected-text);
+}
+.badge-submitted {
+  background: var(--color-submitted-bg);
+  color: var(--color-submitted-text);
+}
+
+/* ===== Loader ===== */
+
+.loader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 0;
+  color: var(--color-ink-muted);
+  font-size: 0.9rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Error / empty states ===== */
+
+.error-message {
+  padding: 20px 0;
+  color: var(--color-rejected-text);
+}
+
+.error-message p {
+  margin: 0 0 10px;
+  font-size: 0.92rem;
+}
+
+.empty-state {
+  color: var(--color-ink-muted);
+  font-size: 0.9rem;
+  padding: 24px 0;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 0 16px 48px;
+  }
+
+  .app-header {
+    padding: 32px 0 24px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  thead th:nth-child(3),
+  tbody td:nth-child(3) {
+    display: none; /* hide Order ID column on mobile to reduce horizontal scroll */
+  }
+}
+
+/* ===== Reduced motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+  .btn-primary,
+  .filter-chip {
+    transition: none;
+  }
+}
